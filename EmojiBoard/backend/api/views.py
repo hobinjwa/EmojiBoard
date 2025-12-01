@@ -8,9 +8,12 @@ API 뷰: 클라이언트의 요청을 처리하는 함수들
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 
+@method_decorator(csrf_exempt, name='dispatch')
 class PostViewSet(viewsets.ModelViewSet):
     """
     게시물 CRUD (생성, 읽기, 수정, 삭제)

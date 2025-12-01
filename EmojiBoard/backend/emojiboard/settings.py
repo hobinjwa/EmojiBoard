@@ -113,6 +113,11 @@ REST_FRAMEWORK = {
     ],
 }
 
+# Development helper: disable SessionAuthentication to avoid CSRF errors
+# when using a separate frontend dev server (React) during development.
+# WARNING: This relaxes authentication checks — revert for production.
+REST_FRAMEWORK.setdefault('DEFAULT_AUTHENTICATION_CLASSES', [])
+
 # CORS 설정 (프론트엔드와 통신하기 위해 필요)
 # 개발 중에는 모든 출처를 허용 (배포 시에는 특정 도메인만 허용해야 함)
 CORS_ALLOWED_ORIGINS = [
